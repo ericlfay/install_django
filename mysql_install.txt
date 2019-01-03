@@ -1,0 +1,14 @@
+1 my.ini 
+2 在MySQL安装目录的 bin 目录下执行命令：
+
+mysqld --initialize --console
+
+执行完成后，会打印 root 用户的初始默认密码
+
+3在MySQL安装目录的 bin 目录下执行命令：
+
+mysqld --install [服务名]
+
+后面的服务名可以不写，默认的名字为 mysql
+
+4 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Rongdian123!';

@@ -1,0 +1,39 @@
+
+进入mod_wsgi-experss.exe 所在目录 python/scripts，并加参数module-config运行查看配置信息
+
+
+Define SRVROOT "E:/django_install/Apache24"
+<Directory />
+    AllowOverride none
+    Require all granted
+</Directory>
+
+Listen 8000
+ServerName localhost:8000
+
+LoadFile "h:/python36/python36.dll"
+LoadModule wsgi_module "h:/python36/lib/site-packages/mod_wsgi/server/mod_wsgi.cp36-win_amd64.pyd"
+WSGIPythonHome "h:/python36"
+
+WSGIScriptAlias / C:/Users/admin/Desktop/SubstationsMonitoring/SubstationMonitoring/wsgi.py    
+Alias /static/ C:/Users/admin/Desktop/SubstationsMonitoring/SubstationMonitoring/static/
+<Directory C:/Users/admin/Desktop/SubstationsMonitoring/SubstationMonitoring/static>
+        Require all granted
+</Directory>
+
+WSGIPythonPath "C:/Users/admin/Desktop/SubstationsMonitoring"
+<Directory C:/Users/admin/Desktop/SubstationsMonitoring/SubstationMonitoring>
+    <Files wsgi.py>
+        Require all granted
+        setHandler wsgi-script
+    </Files>
+</Directory>
+
+
+开启
+LoadModule rewrite_module modules/mod_rewrite.so
+
+编辑
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]

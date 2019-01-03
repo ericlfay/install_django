@@ -1,0 +1,2 @@
+httpd.exe  -k install
+net start apache2.4
